@@ -4,12 +4,12 @@ from flask_cors import CORS
 
 def db_connector():
     db = pymysql.connect(host='127.0.0.1', user='root', password='12345678', charset='utf8',db='demo')
-    cursor = db.cursor()
+    cursor = db.cursor(pymysql.cursors.DictCursor)
     sql = '''SELECT * FROM visits;'''
     cursor.execute(sql)
     result = cursor.fetchall()
     db.close()
-    return str(result)
+    return result
 
 
 
